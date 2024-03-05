@@ -9,7 +9,7 @@
   <speed>60</speed>
   <persistent>0</persistent>
   <colour>12632256</colour>
-  <showcolour>-1</showcolour>
+  <showcolour>0</showcolour>
   <code></code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
@@ -31,7 +31,7 @@
     <yoffset>0</yoffset>
   </makerSettings>
   <backgrounds>
-    <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
+    <background visible="-1" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
@@ -56,12 +56,16 @@
     <instance objName="obj_crumblingPlatform" x="348" y="456" name="inst_F6AF96C0" locked="0" code="" scaleX="6" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_normalPlatform" x="336" y="300" name="inst_D17BCE52" locked="0" code="" scaleX="8" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_normalPlatform" x="264" y="408" name="inst_DEDF0CA5" locked="0" code="" scaleX="8" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_normalPlatform" x="312" y="516" name="inst_295E0EB3" locked="0" code="" scaleX="8" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_normalPlatform" x="312" y="516" name="inst_295E0EB3" locked="0" code="track = instance_nearest(444,516,obj_track2);&#xA;" scaleX="8" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_normalPlatform" x="228" y="576" name="inst_796268AA" locked="0" code="" scaleX="8" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_normalPlatform" x="72" y="528" name="inst_CF20FA35" locked="0" code="" scaleX="8" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_crumblingPlatform" x="72" y="408" name="inst_CAAA19A9" locked="0" code="" scaleX="6" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_crumblingPlatform" x="156" y="324" name="inst_7410CCC7" locked="0" code="" scaleX="6" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_crumblingPlatform" x="408" y="372" name="inst_0E23A089" locked="0" code="" scaleX="6" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_crumblingPlatform" x="240" y="336" name="inst_0E23A089" locked="0" code="track = instance_nearest(348, 324, obj_track1);&#xA;" scaleX="6" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_track1" x="348" y="324" name="inst_1DC4D38C" locked="0" code="" scaleX="60" scaleY="1" colour="4294967295" rotation="5"/>
+    <instance objName="obj_track2" x="444" y="516" name="inst_992F5C9D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_track4" x="192" y="204" name="inst_CD9CD178" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_normalPlatform" x="108" y="204" name="inst_D7FEB6AB" locked="0" code="track = instance_nearest(192,204,obj_track4);&#xA;" scaleX="2" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

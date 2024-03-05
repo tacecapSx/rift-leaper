@@ -25,13 +25,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>vspeed += 0.025;
-image_angle = point_direction(0,0,hspeed,vspeed);
+            <string>_vspeed += 0.025;
+image_angle = point_direction(0,0,_hspeed,_vspeed);
 
 if place_meeting(x,y,par_platform) {
     instance_create(x,y,obj_explosion);
     instance_destroy();
 }
+
+hspeed = _hspeed * timeScale;
+vspeed = _vspeed * timeScale;
 </string>
           </argument>
         </arguments>

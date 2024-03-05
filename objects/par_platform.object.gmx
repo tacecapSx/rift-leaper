@@ -26,6 +26,10 @@
           <argument>
             <kind>1</kind>
             <string>active = false;
+track = noone;
+trackSpeed = 0.5;
+trackProgress = 0;
+trackDirection = true;
 _hspeed = 0;
 _vspeed = 0;
 </string>
@@ -51,6 +55,37 @@ _vspeed = 0;
           <argument>
             <kind>1</kind>
             <string>active = false;
+
+if track != noone {
+    if trackProgress &gt; track.length trackDirection = false;
+    else if trackProgress &lt; 0 trackDirection = true;
+
+    var _lerp = trackProgress / track.length;
+
+    switch(track.object_index) {
+        case obj_track1: //straight
+            x = lerp(track.startX, track.endX, _lerp);
+            y = lerp(track.startY, track.endY, _lerp);
+        break;
+        case obj_track2: //semicircle
+            x = track.x + lengthdir_x(track.radius, lerp(track.startAngle, track.endAngle, _lerp));
+            y = track.y + lengthdir_y(track.radius, lerp(track.startAngle, track.endAngle, _lerp));
+        break;
+        case obj_track4: //circle
+            x = track.x + lengthdir_x(track.radius, lerp(0, 360, _lerp));
+            y = track.y + lengthdir_y(track.radius, lerp(0, 360, _lerp));
+            
+            if trackProgress + trackSpeed * timeScale &gt; track.length {
+                trackProgress = 0;
+            }
+        break;
+    }
+    
+    trackProgress += trackSpeed * sign(trackDirection - 0.5) * timeScale;
+    
+    _hspeed = x - xprevious;
+    _vspeed = y - yprevious;
+}
 </string>
           </argument>
         </arguments>

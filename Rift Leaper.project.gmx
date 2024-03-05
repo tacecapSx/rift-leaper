@@ -15,8 +15,17 @@
     <sprite>sprites\spr_bullet</sprite>
     <sprite>sprites\spr_glow</sprite>
     <sprite>sprites\spr_crumblingPlatform</sprite>
+    <sprite>sprites\spr_track1</sprite>
+    <sprite>sprites\spr_track2</sprite>
+    <sprite>sprites\spr_track3</sprite>
+    <sprite>sprites\spr_track4</sprite>
+    <sprite>sprites\spr_portal</sprite>
+    <sprite>sprites\spr_clockHand</sprite>
+    <sprite>sprites\spr_background</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\tile_dirt</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\clamp01.gml</script>
@@ -38,6 +47,9 @@
     <object>objects\obj_bullet</object>
     <object>objects\obj_explosion</object>
     <object>objects\obj_portal</object>
+    <object>objects\obj_track1</object>
+    <object>objects\obj_track2</object>
+    <object>objects\obj_track4</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_init</room>

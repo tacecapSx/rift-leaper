@@ -102,13 +102,17 @@ else if abs(_hspeed + h * 0.33) &lt; abs(_hspeed) _hspeed += h * 0.33;
 
 var grav = 0.275;
 
-_vspeed = clamp(_vspeed + grav, -1000, 6)
+_vspeed = clamp(_vspeed + grav * timeScale, -1000, 6)
 
-platform = instance_place(x, y + _vspeed, par_platform);
+if !obj_portal.swapping {
+    if place_meeting(x,y,par_platform) 
 
-var prev = grounded;
-grounded = (platform != noone);
-if grounded != prev jumps--;
+    platform = instance_place(x, y + abs(_vspeed), par_platform);
+    
+    var prev = grounded;
+    grounded = (platform != noone);
+    if grounded != prev jumps--;
+}
 
 if grounded {
     platform.active = true;
@@ -124,9 +128,9 @@ if keyboard_check_pressed(vk_space) &amp;&amp; jumps &gt; 0 {
     _vspeed = -6;
 }
 
-if timeScale = 0 _vspeed = 0;
+if timeScale == 0 &amp;&amp; _vspeed &gt; 2 _vspeed = 0;
 
-hspeed = _hspeed * timeScale;
+hspeed = (_hspeed + ternary(grounded, platform._hspeed, 0)) * timeScale;
 vspeed = _vspeed * timeScale;
 </string>
           </argument>
@@ -152,7 +156,7 @@ vspeed = _vspeed * timeScale;
             <kind>1</kind>
             <string>draw_self();
 draw_set_font(smallFont);
-draw_text(x,y,instance_number(obj_explosion));
+draw_text(x + 20,y,_vspeed);
 </string>
           </argument>
         </arguments>
