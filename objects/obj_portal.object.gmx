@@ -3,7 +3,7 @@
   <spriteName>spr_portal</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>10</depth>
+  <depth>1000001</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -64,10 +64,10 @@ else {
 
 prevImageAngle = image_angle;
 
-image_alpha *= 0.25;
+image_alpha *= 0.5;
 
-image_xscale = image_alpha * 6;
-image_yscale = image_alpha * 6;
+image_xscale = image_alpha * 5;
+image_yscale = image_alpha * 5;
 image_angle += image_alpha * 2;
 
 x += (xTo - x) / ((1.1-image_alpha)*10);

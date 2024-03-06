@@ -29,6 +29,8 @@
 jumps = 0;
 maxJumps = 2;
 canShoot = false;
+platform = noone;
+image_speed = 0.07;
 
 instance_create(mouse_x, mouse_y, obj_cursor);
 gun = instance_create(x,y,obj_gun);
@@ -90,7 +92,9 @@ view_yview -= (view_yview - yTo) / 25;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if keyboard_check_pressed(ord('R')) game_restart();
+            <string>///logic
+
+if keyboard_check_pressed(ord('R')) game_restart();
 
 var h = keyboard_check(ord('D')) - keyboard_check(ord('A'));
 
@@ -105,33 +109,70 @@ var grav = 0.275;
 _vspeed = clamp(_vspeed + grav * timeScale, -1000, 6)
 
 if !obj_portal.swapping {
-    if place_meeting(x,y,par_platform) 
-
-    platform = instance_place(x, y + abs(_vspeed), par_platform);
+    platform = instance_place(x, y + _vspeed, par_platform);
     
     var prev = grounded;
     grounded = (platform != noone);
     if grounded != prev jumps--;
-}
-
-if grounded {
-    platform.active = true;
-    jumps = maxJumps;
-    canShoot = true;
     
-    if grounded != prev _vspeed /= 2 else _vspeed = platform._vspeed;
-}
-
-if keyboard_check_pressed(vk_space) &amp;&amp; jumps &gt; 0 {
-    if !grounded jumps--;
+    if grounded {
+        platform.active = true;
+        jumps = maxJumps;
+        canShoot = true;
+        
+        if grounded != prev y += _vspeed * timeScale*1.1;
+        
+        _vspeed = platform._vspeed;
+    }
     
-    _vspeed = -6;
+    if keyboard_check_pressed(vk_space) &amp;&amp; jumps &gt; 0 {
+        if !grounded jumps--;
+        
+        _vspeed = -6;
+    }
 }
 
 if timeScale == 0 &amp;&amp; _vspeed &gt; 2 _vspeed = 0;
 
-hspeed = (_hspeed + ternary(grounded, platform._hspeed, 0)) * timeScale;
+hspeed = _hspeed * timeScale;
+if grounded &amp;&amp; !obj_portal.swapping hspeed += platform._hspeed * timeScale;
 vspeed = _vspeed * timeScale;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///animation
+
+if !grounded {
+    if _hspeed &gt; 4 {
+        sprite_index = spr_player_jump_right;
+    }
+    else if _hspeed &lt; -4 {
+        sprite_index = spr_player_jump_left;
+    }
+    else {
+        sprite_index = spr_player_jump;
+    }
+}
+else {
+    sprite_index = spr_player;
+}
 </string>
           </argument>
         </arguments>
@@ -154,7 +195,11 @@ vspeed = _vspeed * timeScale;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
+            <string>draw_set_blend_mode(bm_add);
+draw_sprite_ext(spr_glow,0,x,y,1,1,0,-1,0.05);
+draw_set_blend_mode(bm_normal);
+
+draw_self();
 draw_set_font(smallFont);
 draw_text(x + 20,y,_vspeed);
 </string>

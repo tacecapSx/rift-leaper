@@ -51,7 +51,7 @@ if clicked &amp;&amp; obj_player.canShoot {
     }
     else obj_player._vspeed -= lengthdir_y(2.5,image_angle);
     
-    if !obj_player.grounded obj_player.canShoot = false;
+    if !obj_player.grounded || obj_portal.swapping obj_player.canShoot = false;
 }
 </string>
           </argument>

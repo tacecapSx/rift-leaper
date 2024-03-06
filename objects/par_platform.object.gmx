@@ -61,6 +61,7 @@ if track != noone {
     else if trackProgress &lt; 0 trackDirection = true;
 
     var _lerp = trackProgress / track.length;
+    show_debug_message(_lerp);
 
     switch(track.object_index) {
         case obj_track1: //straight
