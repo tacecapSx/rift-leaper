@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-1</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,20 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>displayManager._x = x;
-displayManager._y = y;
-
-with(obj_player) {
-    var len = 20/sqrt(point_distance(x,y,displayManager._x,displayManager._y));
-    var dir = point_direction(displayManager._x,displayManager._y,x,y);
-    
-    _hspeed += lengthdir_x(len,dir);
-    _vspeed += lengthdir_y(len,dir);
-    
-    screenShake = len/2;
-}
-
-image_alpha = 2;
+            <string>image_alpha = 0.5;
+image_speed = 0;
 </string>
           </argument>
         </arguments>
@@ -61,37 +49,11 @@ image_alpha = 2;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_alpha -= 0.075;
+            <string>image_alpha -= 0.05 * timeScale;
 
 if image_alpha &lt;= 0 {
     instance_destroy();
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>draw_sprite_ext(spr_glow,0,x,y,image_alpha/2,image_alpha/2,0,c_red,clamp01(image_alpha));
-draw_sprite_ext(spr_glow,0,x,y,image_alpha/4,image_alpha/4,0,c_orange,clamp01(image_alpha));
-draw_sprite_ext(spr_glow,0,x,y,image_alpha/8,image_alpha/8,0,c_yellow,clamp01(image_alpha));
-draw_sprite_ext(spr_glow,0,x,y,image_alpha/16,image_alpha/16,0,c_white,clamp01(image_alpha));
 </string>
           </argument>
         </arguments>

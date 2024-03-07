@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>crumbleTimer = 0;
+image_speed = 0;
 
 event_inherited();
 </string>
@@ -52,7 +53,7 @@ event_inherited();
             <kind>1</kind>
             <string>///Platform behavior
 
-if active {
+if active &amp;&amp; !obj_portal.swapping {
     crumbleTimer += timeScale;
     
     if crumbleTimer &gt;= 90 &amp;&amp; _vspeed &lt; 3{
@@ -63,7 +64,7 @@ if active {
         hspeed = 0;
     }
 }
-else if crumbleTimer &gt; 0 crumbleTimer -= timeScale;
+else if crumbleTimer &gt; 0 &amp;&amp; crumbleTimer &lt; 90 crumbleTimer -= timeScale;
 
 if crumbleTimer &gt;= 90 vspeed = _vspeed * timeScale;
 </string>
@@ -88,8 +89,16 @@ if crumbleTimer &gt;= 90 vspeed = _vspeed * timeScale;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for(var i = 0; i &lt; image_xscale; i++) {
-    draw_sprite_ext(sprite_index, active, x - lengthdir_x((image_xscale/2) * 12, image_angle) + lengthdir_x(i * 12, image_angle), y - lengthdir_y((image_xscale/2) * 12,image_angle) + lengthdir_y(i * 12, image_angle), 1 + (image_xscale mod 1) / floor(image_xscale), 1, 0, image_blend, image_alpha);
+            <string>var _i = clamp(floor(crumbleTimer / 30),0,2);
+if image_index &lt; _i{
+    repeat(6*image_xscale*_i) {
+        instance_create(random_range(bbox_left,bbox_right),random_range(bbox_top,bbox_bottom),part_dust);
+    }   
+}
+image_index = _i;
+
+for(var i = 0; i &lt; image_xscale; i++) {
+    draw_sprite_ext(sprite_index, image_index, x - lengthdir_x((image_xscale/2) * 12, image_angle) + lengthdir_x(i * 12, image_angle), y - lengthdir_y((image_xscale/2) * 12,image_angle) + lengthdir_y(i * 12, image_angle), 1 + (image_xscale mod 1) / floor(image_xscale), 1, 0, image_blend, image_alpha);
 }
 </string>
           </argument>

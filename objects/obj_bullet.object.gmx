@@ -25,10 +25,12 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>_vspeed += 0.025;
+            <string>if timeScale != 0 instance_create(x+random_range(-3,3),y+random_range(-3,3),part_fire);
+
+_vspeed += 0.025 * timeScale;
 image_angle = point_direction(0,0,_hspeed,_vspeed);
 
-if place_meeting(x,y,par_platform) {
+if !obj_portal.swapping &amp;&amp; place_meeting(x,y,par_platform) {
     instance_create(x,y,obj_explosion);
     instance_destroy();
 }

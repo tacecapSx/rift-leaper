@@ -27,15 +27,18 @@
             <kind>1</kind>
             <string>dimensionTimerMax = seconds(12);
 dimensionTimer = dimensionTimerMax - seconds(1);
+warningThreshold = 30;
 swapTimerMax = seconds(0.8);
 swapTimer = 0;
 swapping = false;
+start = (room != rm_level1);
+warning = false;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="3" enumb="1">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -68,18 +71,19 @@ image_alpha *= 0.5;
 
 image_xscale = image_alpha * 5;
 image_yscale = image_alpha * 5;
-image_angle += image_alpha * 2;
+image_angle += image_alpha * 2 * timeScale;
 
-x += (xTo - x) / ((1.1-image_alpha)*10);
-y += (yTo - y) / ((1.1-image_alpha)*10);
+x += ((xTo - x) / ((1.1-image_alpha)*10)) * timeScale;
+y += ((yTo - y) / ((1.1-image_alpha)*10)) * timeScale;
 
+if !start &amp;&amp; obj_player.x &gt; 300 start = true;
 
 if !swapping {
-    timeScale = 1;
-    dimensionTimer -= timeScale;
+    if start dimensionTimer -= timeScale * !obj_player.ending;
+    if dimensionTimer &lt; dimensionTimerMax - warningThreshold warning = false;
     
-    if dimensionTimer &lt; seconds(2) {
-        //warn
+    if dimensionTimer &lt; warningThreshold {
+        warning = true;
         
         if dimensionTimer &lt; 0 {
             timeScale = 0;
@@ -171,6 +175,7 @@ else {
     if swapTimer &lt; 0 {
         swapping = false;
         dimensionTimer = dimensionTimerMax;
+        timeScale = 1;
     }
 }
 </string>

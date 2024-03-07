@@ -7,6 +7,7 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_player</sprite>
+    <sprite>sprites\spr_player_walk</sprite>
     <sprite>sprites\spr_player_jump</sprite>
     <sprite>sprites\spr_player_jump_right</sprite>
     <sprite>sprites\spr_player_jump_left</sprite>
@@ -25,6 +26,10 @@
     <sprite>sprites\spr_portal</sprite>
     <sprite>sprites\spr_clockHand</sprite>
     <sprite>sprites\spr_background</sprite>
+    <sprite>sprites\spr_fire</sprite>
+    <sprite>sprites\spr_dirt</sprite>
+    <sprite>sprites\spr_exit</sprite>
+    <sprite>sprites\spr_dust</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\tile_dirt</background>
@@ -54,10 +59,21 @@
     <object>objects\obj_track1</object>
     <object>objects\obj_track2</object>
     <object>objects\obj_track4</object>
+    <object>objects\part_fire</object>
+    <object>objects\part_dust</object>
+    <object>objects\part_exit</object>
+    <object>objects\obj_tutorialText</object>
+    <object>objects\obj_dirtBackground</object>
+    <object>objects\obj_collPoint</object>
+    <object>objects\obj_exit</object>
+    <object>objects\obj_deathPlane</object>
+    <object>objects\obj_afterImage</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_init</room>
     <room>rooms\rm_level1</room>
+    <room>rooms\rm_level2</room>
+    <room>rooms\rm_levelTemplate</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

@@ -44,6 +44,7 @@ if clicked &amp;&amp; obj_player.canShoot {
     bullet._hspeed = lengthdir_x(4, image_angle) + obj_player._hspeed;
     bullet._vspeed = lengthdir_y(4, image_angle) + obj_player._vspeed;
     
+    obj_player.screenShake = 1.5;
     obj_player._hspeed -= lengthdir_x(2.5,image_angle);
     
     if obj_player._vspeed &gt; 0 {
