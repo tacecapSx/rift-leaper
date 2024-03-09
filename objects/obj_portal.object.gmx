@@ -200,7 +200,8 @@ else {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite_ext(sprite_index,image_index,x+random_range(-image_alpha*2,image_alpha*2),y+random_range(-image_alpha*2,image_alpha*2),image_xscale,image_yscale,image_angle,image_blend,image_alpha);
+            <string>draw_sprite_ext(spr_glow,0,x,y,image_xscale,image_yscale,0,c_fuchsia,image_alpha);
+draw_sprite_ext(sprite_index,image_index,x+random_range(-image_alpha*2,image_alpha*2),y+random_range(-image_alpha*2,image_alpha*2),image_xscale,image_yscale,image_angle,image_blend,image_alpha);
 
 //clock hands
 draw_sprite_ext(spr_clockHand,1,x+random_range(-image_alpha*2,image_alpha*2),y+random_range(-image_alpha*2,image_alpha*2),image_xscale,image_yscale,-image_angle*0.5,image_blend,image_alpha);
