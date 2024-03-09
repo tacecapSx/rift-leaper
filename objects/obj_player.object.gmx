@@ -363,7 +363,7 @@ draw_sprite_ext(spr_normalPlatform, 0, view_xview+view_wview/2,view_yview-50,100
 
 if !focus {
     draw_set_halign(fa_center);
-    draw_text(view_xview+view_wview/2,view_yview+view_hview/2,"Click to return to game!");
+    draw_text_shadow(view_xview+view_wview/2,view_yview+view_hview/2,1,1,"Click to return to game!",-1,0,1,1);
     draw_set_halign(fa_left);
 }
 </string>
