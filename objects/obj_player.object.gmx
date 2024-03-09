@@ -26,9 +26,9 @@
           <argument>
             <kind>1</kind>
             <string>grounded = false;
-jumps = 0;
 maxJumps = 2;
-canShoot = false;
+jumps = maxJumps - 1;
+canShoot = true;
 platform = noone;
 airTime = 0;
 image_speed = 0.07;
@@ -59,6 +59,7 @@ exitDirection = point_direction(x,y,obj_exit.x,obj_exit.y);
 hadFocus = true;
 focus = false;
 slowmo = false;
+boosting = false;
 </string>
           </argument>
         </arguments>
@@ -122,9 +123,9 @@ view_yview += random_range(-screenShake,screenShake);
 
 if timeScale != 0 instance_create(random_range(bbox_left,bbox_right),random_range(bbox_top,bbox_bottom),part_fire);
 
-if keyboard_check_pressed(ord('R')) if keyboard_check(vk_shift) game_restart() else room_restart();
-if keyboard_check_pressed(ord('N')) room_goto(room_next(room));
-if keyboard_check_pressed(ord('P')) room_goto(room_previous(room));
+if keyboard_check_pressed(ord('R')) deathTimer+=5;
+if keyboard_check_pressed(ord('N')) &amp;&amp; keyboard_check(vk_shift) room_goto(room_next(room));
+if keyboard_check_pressed(ord('P')) &amp;&amp; keyboard_check(vk_shift) room_goto(room_previous(room));
 
 h = keyboard_check(ord('D')) - keyboard_check(ord('A'));
 
@@ -144,7 +145,7 @@ var grav = 0.275;
 
 _vspeed = clamp(_vspeed + grav * timeScale, -1000, 6)
 
-if !obj_portal.swapping {
+if !obj_portal.swapping &amp;&amp; !boosting {
     //slowmo
     slowmo = keyboard_check(vk_shift);
     
@@ -180,26 +181,27 @@ if !obj_portal.swapping {
     else timeScale = 1;
     
     //horizontal
-    if leftPoint.colliding {
+    if leftPoint.colliding &amp;&amp; leftPoint.colliding.object_index != obj_boostPlatform {
         _hspeed = 0;
     }
     
-    if rightPoint.colliding {
+    if rightPoint.colliding &amp;&amp; rightPoint.colliding.object_index != obj_boostPlatform {
         _hspeed = 0;
     }    
 
     //vertical
     platform = instance_place(x, y + _vspeed, par_platform);
     
+    //head check
     if platform {
         if platform.y &lt; y {
+            if platform.object_index != obj_boostPlatform _vspeed = 0.5;
             platform = noone;
-            _vspeed = 0.5;
         }
     }
     
     var prev = grounded;
-    grounded = (platform != noone);
+    grounded = (platform != noone &amp;&amp; platform.object_index != obj_boostPlatform);
     if grounded != prev jumps--;
     
     if grounded {
@@ -219,7 +221,7 @@ if !obj_portal.swapping {
         _vspeed = -6;
     }
 }
-else {
+else{
     hspeed=0;vspeed=0;
 }
 
@@ -270,7 +272,10 @@ else {
     if hgrav != 0 {_hspeed = ternary(abs(hgrav) &lt; 0.5, sign(hgrav)/2, hgrav); ending = true;}
     if vgrav != 0 {_vspeed = ternary(abs(vgrav) &lt; 0.5, sign(vgrav)/2, vgrav); ending = true;}
     
-    if abs(hgrav)+abs(vgrav) &gt; 0 timeScale = (abs(hgrav)+abs(vgrav))/2 + 0.5;
+    if abs(hgrav)+abs(vgrav) &gt; 0 {
+        timeScale = (abs(hgrav)+abs(vgrav))/2 + 0.5;
+    }
+    else timer++;
     
     hspeed = _hspeed * timeScale;
     if grounded &amp;&amp; !obj_portal.swapping hspeed += platform._hspeed;

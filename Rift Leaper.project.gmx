@@ -22,6 +22,7 @@
     <sprite>sprites\spr_glow</sprite>
     <sprite>sprites\spr_crumblingPlatform</sprite>
     <sprite>sprites\spr_killPlatform</sprite>
+    <sprite>sprites\spr_boostPlatform</sprite>
     <sprite>sprites\spr_track1</sprite>
     <sprite>sprites\spr_track2</sprite>
     <sprite>sprites\spr_track3</sprite>
@@ -32,10 +33,15 @@
     <sprite>sprites\spr_fire</sprite>
     <sprite>sprites\spr_water</sprite>
     <sprite>sprites\spr_dirt</sprite>
+    <sprite>sprites\spr_dirtBall</sprite>
     <sprite>sprites\spr_exit</sprite>
     <sprite>sprites\spr_dust</sprite>
     <sprite>sprites\spr_controls</sprite>
     <sprite>sprites\spr_portalFlash</sprite>
+    <sprite>sprites\spr_boostFlash</sprite>
+    <sprite>sprites\spr_logo</sprite>
+    <sprite>sprites\spr_checkBox</sprite>
+    <sprite>sprites\spr_play</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\tile_dirt</background>
@@ -45,12 +51,15 @@
   <scripts name="scripts">
     <script>scripts\clamp01.gml</script>
     <script>scripts\ternary.gml</script>
-    <script>scripts\signed_clamp.gml</script>
     <script>scripts\seconds.gml</script>
     <script>scripts\minutes.gml</script>
     <script>scripts\array_contains.gml</script>
     <script>scripts\print_array.gml</script>
-    <script>scripts\fix_angle.gml</script>
+    <script>scripts\negmod.gml</script>
+    <script>scripts\get_time_string.gml</script>
+    <script>scripts\add_zeroes.gml</script>
+    <script>scripts\add_zeroes_back.gml</script>
+    <script>scripts\draw_text_shadow.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\obj_player</object>
@@ -58,6 +67,7 @@
     <object>objects\par_platform</object>
     <object>objects\obj_normalPlatform</object>
     <object>objects\obj_bouncePlatform</object>
+    <object>objects\obj_boostPlatform</object>
     <object>objects\obj_crumblingPlatform</object>
     <object>objects\obj_killPlatform</object>
     <object>objects\displayManager</object>
@@ -74,15 +84,22 @@
     <object>objects\part_exit</object>
     <object>objects\obj_tutorialText</object>
     <object>objects\obj_dirtBackground</object>
+    <object>objects\obj_dirtBall</object>
     <object>objects\obj_collPoint</object>
     <object>objects\obj_exit</object>
     <object>objects\obj_deathPlane</object>
     <object>objects\obj_afterImage</object>
     <object>objects\obj_controls</object>
     <object>objects\obj_portalFlash</object>
+    <object>objects\obj_end</object>
+    <object>objects\obj_title</object>
+    <object>objects\obj_titlePortal</object>
+    <object>objects\obj_checkBox</object>
+    <object>objects\obj_play</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_init</room>
+    <room>rooms\rm_mainMenu</room>
     <room>rooms\rm_level1</room>
     <room>rooms\rm_level2</room>
     <room>rooms\rm_level3</room>
@@ -93,6 +110,7 @@
     <room>rooms\rm_level8</room>
     <room>rooms\rm_level9</room>
     <room>rooms\rm_level10</room>
+    <room>rooms\rm_end</room>
     <room>rooms\rm_levelTemplate</room>
   </rooms>
   <help>

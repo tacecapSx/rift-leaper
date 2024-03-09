@@ -55,8 +55,8 @@
     <instance objName="obj_player" x="168" y="432" name="inst_8CDD2573" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_track1" x="456" y="468" name="inst_92B49D64" locked="0" code="" scaleX="70" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_normalPlatform" x="312" y="468" name="inst_A5E24934" locked="0" code="track=instance_nearest(408,460,obj_track1)&#xA;trackProgress = 60;&#xA;trackDirection = false;&#xA;" scaleX="8" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_tutorialText" x="168" y="376" name="inst_4E03C022" locked="0" code="text=&quot;Space-time is falling apart!&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_tutorialText" x="456" y="376" name="inst_F75A9F98" locked="0" code="text=&quot;When the Rift grows restless, space will be jumbled!&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_tutorialText" x="168" y="384" name="inst_4E03C022" locked="0" code="text=&quot;Space-time is falling apart!&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_tutorialText" x="456" y="384" name="inst_F75A9F98" locked="0" code="text=&quot;When the Rift grows restless, space will be jumbled!&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_dirtBackground" x="-1368" y="-504" name="inst_A0E4851A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_dirtBackground" x="-1416" y="1032" name="inst_D4005F95" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_dirtBackground" x="120" y="1296" name="inst_8CF8F82F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

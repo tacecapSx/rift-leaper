@@ -28,17 +28,24 @@
             <string>globalvar showTimer;
 showTimer = false;
 
+globalvar mute;
+mute = false;
+
+globalvar timer;
+timer = 0;
+
 globalvar timeScale;
 timeScale = 1;
 
 globalvar web;
-web = false;
+web = true;
 
 globalvar font;
 font = font_add_sprite(spr_font,ord(' '),true,1)
 globalvar smallFont;
 smallFont = font_add_sprite(spr_smallFont,ord(' '),true,1)
 
+draw_set_font(font);
 draw_set_color(c_white);
 
 ///display properties
@@ -48,6 +55,8 @@ idealHeight = 234;
 maxZoom = 1;
 
 hasChanged = false;
+cachedXOffset = 0;
+cachedYOffset = 0;
 
 aspectRatio = display_get_width()/display_get_height();
 
@@ -80,6 +89,8 @@ else {
         }
     }
 }
+
+randomize();
 
 room_goto(room_next(room));
 </string>
@@ -156,7 +167,12 @@ alarm[0] = 1
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if !web
+            <string>if keyboard_check(vk_shift) &amp;&amp; keyboard_check_pressed(ord('R')) {
+    room_goto(rm_mainMenu);
+}
+
+
+if !web
 {
     if(keyboard_check_pressed(ord('Z')) &amp;&amp; !window_get_fullscreen())
     {
@@ -210,6 +226,32 @@ alarm[0] = 1
         </arguments>
       </action>
     </event>
+    <event eventtype="8" enumb="73">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if showTimer &amp;&amp; room != rm_end &amp;&amp; room != rm_mainMenu {
+    draw_set_font(font);
+    draw_text_shadow(view_xview + 14, view_yview + 14, 1,1,get_time_string(timer),-1,0,1,1);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="72">
       <action>
         <libid>1</libid>
@@ -228,6 +270,11 @@ alarm[0] = 1
           <argument>
             <kind>1</kind>
             <string>draw_sprite_ext(spr_background,0,view_xview,view_yview,view_wview/480,view_hview/270,0,-1,1);
+
+if room == rm_level10 {
+    cachedXOffset = (view_xview-obj_player.xstart)/6;
+    cachedYOffset = (view_yview-obj_player.ystart)/6;
+}
 </string>
           </argument>
         </arguments>

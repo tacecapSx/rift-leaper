@@ -45,8 +45,8 @@ if clicked &amp;&amp; obj_player.canShoot {
     bullet = instance_create(x + lengthdir_x(12, image_angle), y + lengthdir_y(12, image_angle), obj_bullet);
     bullet.image_angle = image_angle;
     bullet.direction = image_angle;
-    bullet._hspeed = lengthdir_x(5.5, image_angle) + obj_player._hspeed;
-    bullet._vspeed = lengthdir_y(5.5, image_angle) + obj_player._vspeed;
+    bullet._hspeed = lengthdir_x(6, image_angle) + obj_player._hspeed;
+    bullet._vspeed = lengthdir_y(6, image_angle) + obj_player._vspeed;
     
     obj_player.screenShake = 1.5;
     obj_player._hspeed -= lengthdir_x(2.5,image_angle);

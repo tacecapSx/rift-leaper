@@ -143,6 +143,7 @@ if !swapping {
                 swapArray[swapCount - 2].trackProgress = swapArray[swapCount - 1].trackProgress;
                 swapArray[swapCount - 1].trackProgress = t;
                 
+                // set speeds
                 swapArray[swapCount - 2]._hspeed = 0;
                 swapArray[swapCount - 2]._vspeed = 0;
                 swapArray[swapCount - 1]._hspeed = 0;
@@ -151,6 +152,28 @@ if !swapping {
                 swapArray[swapCount - 2].vspeed = 0;
                 swapArray[swapCount - 1].hspeed = 0;
                 swapArray[swapCount - 1].vspeed = 0;
+                
+                // swap boosts
+                if swapArray[swapCount - 2].object_index == obj_boostPlatform &amp;&amp; swapArray[swapCount - 2].boostDirection != -1 {
+                    if swapArray[swapCount - 1].object_index == obj_boostPlatform { // swap it
+                        swapArray[swapCount - 1].boostDirection = swapArray[swapCount - 2].boostDirection;
+                        swapArray[swapCount - 1].xOffset = swapArray[swapCount - 2].xOffset;
+                        swapArray[swapCount - 1].yOffset = swapArray[swapCount - 2].yOffset;
+                    }
+                    else obj_player.boosting = false;
+                    
+                    swapArray[swapCount - 2].boostDirection = -1;
+                }
+                else if swapArray[swapCount - 1].object_index == obj_boostPlatform &amp;&amp; swapArray[swapCount - 1].boostDirection != -1 {
+                    if swapArray[swapCount - 2].object_index == obj_boostPlatform { // swap it
+                        swapArray[swapCount - 2].boostDirection = swapArray[swapCount - 1].boostDirection;
+                        swapArray[swapCount - 2].xOffset = swapArray[swapCount - 1].xOffset;
+                        swapArray[swapCount - 2].yOffset = swapArray[swapCount - 1].yOffset;
+                    }
+                    else obj_player.boosting = false;
+                    
+                    swapArray[swapCount - 1].boostDirection = -1;
+                }
             }
         }
     }
