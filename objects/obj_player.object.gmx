@@ -43,8 +43,8 @@ instance_create(x,y,obj_portal);
 leftPoint = instance_create(x,y,obj_collPoint);
 rightPoint = instance_create(x,y,obj_collPoint);
 
-leftPoint.xOffset = -4;
-rightPoint.xOffset = 3;
+leftPoint.xOffset = -5;
+rightPoint.xOffset = 4;
 
 _vspeed = 0;
 _hspeed = 0;
@@ -55,6 +55,10 @@ deathTimer = 0;
 spawnTimer = 30;
 screenShake = 0;
 counter = 0;
+exitDirection = point_direction(x,y,obj_exit.x,obj_exit.y);
+hadFocus = true;
+focus = false;
+slowmo = false;
 </string>
           </argument>
         </arguments>
@@ -84,8 +88,8 @@ if screenShake &gt; 0 screenShake -= 0.05 else screenShake = 0;
 var xTo = x + hspeed*30 - view_wview/2;
 var yTo = y + vspeed*30 - view_hview/2;
 
-view_xview -= ((view_xview - xTo) / 25) * timeScale;
-view_yview -= ((view_yview - yTo) / 25) * timeScale;
+view_xview -= ((view_xview - xTo) / 20) * timeScale;
+view_yview -= ((view_yview - yTo) / 20) * timeScale;
 
 view_xview += random_range(-screenShake,screenShake);
 view_yview += random_range(-screenShake,screenShake);
@@ -119,6 +123,8 @@ view_yview += random_range(-screenShake,screenShake);
 if timeScale != 0 instance_create(random_range(bbox_left,bbox_right),random_range(bbox_top,bbox_bottom),part_fire);
 
 if keyboard_check_pressed(ord('R')) if keyboard_check(vk_shift) game_restart() else room_restart();
+if keyboard_check_pressed(ord('N')) room_goto(room_next(room));
+if keyboard_check_pressed(ord('P')) room_goto(room_previous(room));
 
 h = keyboard_check(ord('D')) - keyboard_check(ord('A'));
 
@@ -140,7 +146,9 @@ _vspeed = clamp(_vspeed + grav * timeScale, -1000, 6)
 
 if !obj_portal.swapping {
     //slowmo
-    if (keyboard_check(vk_shift) || ending || obj_portal.warning) {
+    slowmo = keyboard_check(vk_shift);
+    
+    if (slowmo || ending || obj_portal.warning) {
         counter++;
     
         if !ending {
@@ -199,28 +207,35 @@ if !obj_portal.swapping {
         jumps = maxJumps;
         canShoot = true;
         
-        if grounded != prev y = platform.bbox_top - 5;
+        if grounded != prev y = platform.y - 4.5;
         
-        _vspeed = platform._vspeed;
+        vspeed = platform._vspeed;
+        _vspeed = platform._vspeed / timeScale;
     }
     
-    if keyboard_check_pressed(vk_space) &amp;&amp; jumps &gt; 0 {
+    if keyboard_check_pressed(vk_space) &amp;&amp; jumps &gt; 0 &amp;&amp; (jumps == maxJumps || _vspeed &gt; -6) {
         if (!grounded &amp;&amp; airTime &gt; 10) jumps--;
         
         _vspeed = -6;
     }
+}
+else {
+    hspeed=0;vspeed=0;
 }
 
 if !grounded airTime++ else airTime = 0;
 
 if timeScale == 0 &amp;&amp; _vspeed &gt; 2 _vspeed = 0;
 
-if point_distance(x,y,obj_exit.x,obj_exit.y) &lt; 6 {
+if point_distance(x,y,obj_exit.x,obj_exit.y) &lt; 10 {
     x = obj_exit.x;
     y = obj_exit.y;
     hspeed=0;vspeed=0;
     
     if levelEndTimer == 0 {
+        var _i = instance_create(x,y,obj_portalFlash);
+        _i.image_angle = exitDirection;
+        
         screenShake = 5;
     
         repeat(120) {
@@ -245,6 +260,8 @@ if point_distance(x,y,obj_exit.x,obj_exit.y) &lt; 6 {
     }
 }
 else {
+    exitDirection = point_direction(x,y,obj_exit.x,obj_exit.y);
+
     var _l = clamp((80-point_distance(x,y,obj_exit.x, obj_exit.y))/20,0,4);
     var _d = point_direction(x,y,obj_exit.x,obj_exit.y);
     
@@ -253,9 +270,11 @@ else {
     if hgrav != 0 {_hspeed = ternary(abs(hgrav) &lt; 0.5, sign(hgrav)/2, hgrav); ending = true;}
     if vgrav != 0 {_vspeed = ternary(abs(vgrav) &lt; 0.5, sign(vgrav)/2, vgrav); ending = true;}
     
+    if abs(hgrav)+abs(vgrav) &gt; 0 timeScale = (abs(hgrav)+abs(vgrav))/2 + 0.5;
+    
     hspeed = _hspeed * timeScale;
-    if grounded &amp;&amp; !obj_portal.swapping hspeed += platform._hspeed * timeScale;
-    vspeed = _vspeed * timeScale;
+    if grounded &amp;&amp; !obj_portal.swapping hspeed += platform._hspeed;
+    if !grounded vspeed = _vspeed * timeScale;
 }
 
 if deathTimer &gt; 0 || place_meeting(x,y,obj_deathPlane) {
@@ -332,7 +351,16 @@ else {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite_ext(spr_normalPlatform, 0, view_xview+view_wview/2,view_yview+view_hview/2,1000,1000,0,c_black,clamp01(max(deathTimer,spawnTimer, levelEndTimer-30)/30));
+            <string>hadFocus = focus;
+focus = window_has_focus();
+
+draw_sprite_ext(spr_normalPlatform, 0, view_xview+view_wview/2,view_yview-50,1000,1000,0,c_black,clamp01(max(deathTimer,spawnTimer, levelEndTimer-30, !focus*15)/30));
+
+if !focus {
+    draw_set_halign(fa_center);
+    draw_text(view_xview+view_wview/2,view_yview+view_hview/2,"Click to return to game!");
+    draw_set_halign(fa_left);
+}
 </string>
           </argument>
         </arguments>
@@ -356,12 +384,14 @@ else {
           <argument>
             <kind>1</kind>
             <string>draw_set_blend_mode(bm_add);
-draw_sprite_ext(spr_glow,0,x,y,1,1,0,-1,0.05);
+draw_sprite_ext(spr_glow,0,x,y,1,1,0,-1,0.075);
 draw_set_blend_mode(bm_normal);
 
 draw_self();
-draw_set_font(smallFont);
-draw_text(x + 20,y,jumps);
+
+if slowmo {
+    draw_sprite_ext(spr_exitArrow,image_index mod 2,x + lengthdir_x(60,exitDirection), y + lengthdir_y(60,exitDirection), 1, 1, exitDirection,-1,0.5);
+}
 </string>
           </argument>
         </arguments>

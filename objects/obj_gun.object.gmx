@@ -31,18 +31,22 @@ vspeed = 0;
 x = obj_player.x;
 y = obj_player.y;
 
-image_angle = point_direction(obj_player.x, obj_player.y, obj_cursor.x, obj_cursor.y);
+var clicked = false;
 
-if sign(dcos(image_angle)) != 0 image_yscale = sign(dcos(image_angle));
-
-var clicked = mouse_check_button_pressed(mb_left);
+if obj_player.hadFocus {
+    image_angle = point_direction(obj_player.x, obj_player.y, obj_cursor.x, obj_cursor.y);
+    
+    if sign(dcos(image_angle)) != 0 image_yscale = sign(dcos(image_angle));
+    
+    clicked = mouse_check_button_pressed(mb_left);
+}
 
 if clicked &amp;&amp; obj_player.canShoot {
     bullet = instance_create(x + lengthdir_x(12, image_angle), y + lengthdir_y(12, image_angle), obj_bullet);
     bullet.image_angle = image_angle;
     bullet.direction = image_angle;
-    bullet._hspeed = lengthdir_x(4, image_angle) + obj_player._hspeed;
-    bullet._vspeed = lengthdir_y(4, image_angle) + obj_player._vspeed;
+    bullet._hspeed = lengthdir_x(5, image_angle) + obj_player._hspeed;
+    bullet._vspeed = lengthdir_y(5, image_angle) + obj_player._vspeed;
     
     obj_player.screenShake = 1.5;
     obj_player._hspeed -= lengthdir_x(2.5,image_angle);

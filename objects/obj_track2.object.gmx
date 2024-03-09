@@ -30,8 +30,11 @@
 radius = image_xscale * 62;
 length = 2*pi*radius * (130 / 360);
 
-startAngle = (180 + 25 + image_angle) mod 360;
-endAngle = (360 - 25 + image_angle) mod 360;
+startAngle = fix_angle(180 + 25 + image_angle);
+endAngle = fix_angle(360 - 25 + image_angle);
+middleAngle = fix_angle(image_angle - 90);
+
+if middleAngle == 0 middleAngle = 360;
 </string>
           </argument>
         </arguments>

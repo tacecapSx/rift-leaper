@@ -53,16 +53,33 @@
   <instances>
     <instance objName="obj_normalPlatform" x="168" y="468" name="inst_DCC3F7E0" locked="0" code="" scaleX="8" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_player" x="168" y="432" name="inst_8CDD2573" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_exit" x="672" y="132" name="inst_E8B29230" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_exit" x="672" y="180" name="inst_E8B29230" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_tutorialText" x="396" y="396" name="inst_0C128AB8" locked="0" code="text=&quot;Some platforms have unique properties!&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_track4" x="396" y="444" name="inst_11FA5B97" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_crumblingPlatform" x="300" y="456" name="inst_00F1F4F1" locked="0" code="track=instance_nearest(396,444,obj_track4);&#xA;trackProgress = 62*pi&#xA;" scaleX="8" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_deathPlane" x="432" y="780" name="inst_70B1CBA4" locked="0" code="" scaleX="1000" scaleY="6" colour="4294967295" rotation="0"/>
     <instance objName="obj_crumblingPlatform" x="576" y="360" name="inst_72949907" locked="0" code="" scaleX="8" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_dirtBackground" x="0" y="0" name="inst_24F0BD6F" locked="0" code="" scaleX="22" scaleY="200" colour="4294967295" rotation="0"/>
-    <instance objName="obj_dirtBackground" x="264" y="528" name="inst_92698C51" locked="0" code="" scaleX="100" scaleY="100" colour="4294967295" rotation="0"/>
-    <instance objName="obj_dirtBackground" x="696" y="0" name="inst_7792A900" locked="0" code="" scaleX="72" scaleY="44" colour="4294967295" rotation="0"/>
-    <instance objName="obj_dirtBackground" x="0" y="-168" name="inst_82B131C7" locked="0" code="" scaleX="96" scaleY="30" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dirtBackground" x="-1272" y="-240" name="inst_24F0BD6F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dirtBackground" x="-1272" y="1296" name="inst_92698C51" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dirtBackground" x="264" y="1296" name="inst_7792A900" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dirtBackground" x="264" y="-576" name="inst_82B131C7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dirtBackground" x="-1272" y="-1008" name="inst_94FA81EB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dirtBackground" x="1800" y="1296" name="inst_9D55956D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dirtBackground" x="1464" y="-240" name="inst_1DDD228E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dirtBackground" x="1800" y="-1008" name="inst_7EEFBBFA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dirtBackground" x="-504" y="1296" name="inst_DCC08D39" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dirtBackground" x="-504" y="-240" name="inst_CF54BBD5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dirtBackground" x="-504" y="-1008" name="inst_4EA41875" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dirtBackground" x="1032" y="-1008" name="inst_3AEB123C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dirtBackground" x="696" y="-240" name="inst_572226D3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dirtBackground" x="1032" y="1296" name="inst_90CEC22A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dirtBackground" x="1800" y="528" name="inst_A0486CF5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dirtBackground" x="1032" y="528" name="inst_FDD78ECC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dirtBackground" x="264" y="528" name="inst_4A2B716B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dirtBackground" x="-504" y="528" name="inst_5D6F206F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dirtBackground" x="-1272" y="528" name="inst_4C21EB7E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dirtBackground" x="264" y="-1344" name="inst_FACDA1A2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_tutorialText" x="600" y="288" name="inst_23074707" locked="0" code="text=&quot;Launch yourself with a rocket blast!&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tile_dirt_big" x="480" y="480" w="24" h="24" xo="53" yo="27" id="10002614" name="inst_55FE31C3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

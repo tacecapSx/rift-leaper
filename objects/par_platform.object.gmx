@@ -57,6 +57,8 @@ _vspeed = 0;
             <string>active = false;
 
 if track != noone {
+    trackProgress += trackSpeed * sign(trackDirection - 0.5) * timeScale;
+    
     if trackProgress &gt; track.length trackDirection = false;
     else if trackProgress &lt; 0 trackDirection = true;
 
@@ -65,15 +67,17 @@ if track != noone {
     switch(track.object_index) {
         case obj_track1: //straight
             x = lerp(track.startX, track.endX, _lerp);
-            y = lerp(track.startY, track.endY, _lerp);
+            y = lerp(track.startY, track.endY, _lerp) - image_yscale * 6;
         break;
         case obj_track2: //semicircle
-            x = track.x + lengthdir_x(track.radius, lerp(track.startAngle, track.endAngle, _lerp));
-            y = track.y + lengthdir_y(track.radius, lerp(track.startAngle, track.endAngle, _lerp));
+            var _dir = ternary(_lerp &lt; 0.5, lerp(max(track.startAngle,track.endAngle), track.middleAngle, _lerp * 2), lerp(ternary(track.middleAngle==360,0,track.middleAngle), min(track.startAngle,track.endAngle), (_lerp - 0.5) * 2));
+        
+            x = track.x + lengthdir_x(track.radius, _dir);
+            y = track.y + lengthdir_y(track.radius, _dir) - image_yscale * 6;
         break;
         case obj_track4: //circle
             x = track.x + lengthdir_x(track.radius, lerp(0, 360, _lerp));
-            y = track.y + lengthdir_y(track.radius, lerp(0, 360, _lerp));
+            y = track.y + lengthdir_y(track.radius, lerp(0, 360, _lerp)) - image_yscale * 6;
             
             if trackProgress + trackSpeed * timeScale &gt; track.length {
                 trackProgress = 0;
@@ -81,10 +85,10 @@ if track != noone {
         break;
     }
     
-    trackProgress += trackSpeed * sign(trackDirection - 0.5) * timeScale;
-    
-    _hspeed = x - xprevious;
-    _vspeed = y - yprevious;
+    if !obj_portal.swapping {
+        _hspeed = x - xprevious;
+        _vspeed = y - yprevious;
+    }
 }
 </string>
           </argument>

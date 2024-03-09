@@ -13,12 +13,15 @@
     <sprite>sprites\spr_player_jump_left</sprite>
     <sprite>sprites\spr_gun</sprite>
     <sprite>sprites\spr_normalPlatform</sprite>
+    <sprite>sprites\spr_bouncePlatform</sprite>
     <sprite>sprites\spr_smallFont</sprite>
     <sprite>sprites\spr_font</sprite>
     <sprite>sprites\spr_cursor</sprite>
     <sprite>sprites\spr_bullet</sprite>
+    <sprite>sprites\spr_exitArrow</sprite>
     <sprite>sprites\spr_glow</sprite>
     <sprite>sprites\spr_crumblingPlatform</sprite>
+    <sprite>sprites\spr_killPlatform</sprite>
     <sprite>sprites\spr_track1</sprite>
     <sprite>sprites\spr_track2</sprite>
     <sprite>sprites\spr_track3</sprite>
@@ -27,9 +30,12 @@
     <sprite>sprites\spr_clockHand</sprite>
     <sprite>sprites\spr_background</sprite>
     <sprite>sprites\spr_fire</sprite>
+    <sprite>sprites\spr_water</sprite>
     <sprite>sprites\spr_dirt</sprite>
     <sprite>sprites\spr_exit</sprite>
     <sprite>sprites\spr_dust</sprite>
+    <sprite>sprites\spr_controls</sprite>
+    <sprite>sprites\spr_portalFlash</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\tile_dirt</background>
@@ -44,13 +50,16 @@
     <script>scripts\minutes.gml</script>
     <script>scripts\array_contains.gml</script>
     <script>scripts\print_array.gml</script>
+    <script>scripts\fix_angle.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\obj_player</object>
     <object>objects\obj_gun</object>
     <object>objects\par_platform</object>
     <object>objects\obj_normalPlatform</object>
+    <object>objects\obj_bouncePlatform</object>
     <object>objects\obj_crumblingPlatform</object>
+    <object>objects\obj_killPlatform</object>
     <object>objects\displayManager</object>
     <object>objects\obj_cursor</object>
     <object>objects\obj_bullet</object>
@@ -60,6 +69,7 @@
     <object>objects\obj_track2</object>
     <object>objects\obj_track4</object>
     <object>objects\part_fire</object>
+    <object>objects\part_water</object>
     <object>objects\part_dust</object>
     <object>objects\part_exit</object>
     <object>objects\obj_tutorialText</object>
@@ -68,11 +78,21 @@
     <object>objects\obj_exit</object>
     <object>objects\obj_deathPlane</object>
     <object>objects\obj_afterImage</object>
+    <object>objects\obj_controls</object>
+    <object>objects\obj_portalFlash</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_init</room>
     <room>rooms\rm_level1</room>
     <room>rooms\rm_level2</room>
+    <room>rooms\rm_level3</room>
+    <room>rooms\rm_level4</room>
+    <room>rooms\rm_level5</room>
+    <room>rooms\rm_level6</room>
+    <room>rooms\rm_level7</room>
+    <room>rooms\rm_level8</room>
+    <room>rooms\rm_level9</room>
+    <room>rooms\rm_level10</room>
     <room>rooms\rm_levelTemplate</room>
   </rooms>
   <help>
