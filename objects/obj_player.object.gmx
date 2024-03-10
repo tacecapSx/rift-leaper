@@ -181,11 +181,11 @@ if !obj_portal.swapping &amp;&amp; !boosting {
     else timeScale = 1;
     
     //horizontal
-    if leftPoint.colliding &amp;&amp; leftPoint.colliding.object_index != obj_boostPlatform {
+    if leftPoint.colliding &amp;&amp; leftPoint.colliding.object_index != obj_boostPlatform &amp;&amp; leftPoint.colliding.object_index != obj_bouncePlatform {
         _hspeed = 0;
     }
     
-    if rightPoint.colliding &amp;&amp; rightPoint.colliding.object_index != obj_boostPlatform {
+    if rightPoint.colliding &amp;&amp; rightPoint.colliding.object_index != obj_boostPlatform &amp;&amp; rightPoint.colliding.object_index != obj_bouncePlatform {
         _hspeed = 0;
     }    
 
@@ -195,13 +195,13 @@ if !obj_portal.swapping &amp;&amp; !boosting {
     //head check
     if platform {
         if platform.y &lt; y {
-            if platform.object_index != obj_boostPlatform _vspeed = 0.5;
+            if platform.object_index != obj_boostPlatform &amp;&amp; platform.object_index != obj_bouncePlatform _vspeed = 0.5;
             platform = noone;
         }
     }
     
     var prev = grounded;
-    grounded = (platform != noone &amp;&amp; platform.object_index != obj_boostPlatform);
+    grounded = (platform != noone &amp;&amp; platform.object_index != obj_boostPlatform &amp;&amp; platform.object_index != obj_bouncePlatform);
     if grounded != prev jumps--;
     
     if grounded {

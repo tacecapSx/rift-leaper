@@ -53,6 +53,10 @@ event_inherited();
             <kind>1</kind>
             <string>///Platform behavior
 
+if killTimer &gt; 0 &amp;&amp; !mute {
+    audio_sound_gain(snd_bubbles, clamp01(killTimer /  90 - 0.05), 0);
+}
+
 if active &amp;&amp; !obj_portal.swapping {
     killTimer += timeScale;
     

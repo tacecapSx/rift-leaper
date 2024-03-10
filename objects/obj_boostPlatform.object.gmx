@@ -98,6 +98,10 @@ if boostDirection != -1 {
         obj_player.canShoot = true;
         obj_player.jumps = obj_player.maxJumps - 1;
         
+        if boostDirection == 1 &amp;&amp; obj_player._vspeed &gt; -7 { // a little exit boost
+            obj_player._vspeed *= 1.5;
+        }
+        
         boostDirection = -1;
     }
 }
@@ -120,6 +124,8 @@ else if !obj_portal.swapping &amp;&amp; place_meeting(x-obj_player.hspeed,y-obj_
         yOffset = obj_player.y - y;
         startHspeed = obj_player._hspeed;
         startVspeed = obj_player._vspeed;
+        
+        if !mute &amp;&amp; !audio_is_playing(snd_boost) audio_play_sound(snd_boost,0,false);
     }
 }
 </string>

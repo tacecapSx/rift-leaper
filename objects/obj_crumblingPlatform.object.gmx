@@ -93,6 +93,8 @@ if crumbleTimer &gt;= 90 vspeed = _vspeed * timeScale;
 
 var _i = clamp(floor(crumbleTimer / 30),0,2);
 if image_index &lt; _i{
+    if !mute audio_play_sound(snd_crumble,0,false);
+
     repeat(6*image_xscale*_i) {
         instance_create(random_range(bbox_left,bbox_right),random_range(bbox_top,bbox_bottom),part_dust);
     }   

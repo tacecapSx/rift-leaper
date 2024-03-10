@@ -72,6 +72,8 @@ if !obj_portal.swapping &amp;&amp; place_meeting(x-obj_player.hspeed,y-obj_playe
         obj_player.jumps = obj_player.maxJumps - 1;
     }
     
+    if !mute &amp;&amp; !audio_is_playing(snd_bounce) audio_play_sound(snd_bounce,0,false);
+    
     obj_player.canShoot = true;
     active = false;
     bounceTimer = 15;

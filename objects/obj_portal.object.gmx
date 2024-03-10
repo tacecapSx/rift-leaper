@@ -35,6 +35,7 @@ start = (room != rm_level1);
 warning = false;
 
 audio_sound_gain(snd_portal,0,0);
+audio_sound_gain(snd_bubbles, 0, 0);
 </string>
           </argument>
         </arguments>
@@ -90,7 +91,9 @@ if !swapping {
         warning = true;
         
         if dimensionTimer &lt; 0 {
-            if !mute audio_play_sound(snd_swap,0,false);
+            if !mute {
+                audio_play_sound(snd_swap,0,false);
+            }
         
             timeScale = 0;
             swapTimer = swapTimerMax;

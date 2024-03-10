@@ -58,8 +58,10 @@ window_set_cursor(cr_none);
 
 bgm = audio_play_sound(snd_mainTheme,0,true);
 portal = audio_play_sound(snd_portal,0,true);
+bubbles = audio_play_sound(snd_bubbles,0,true);
 audio_sound_gain(snd_mainTheme,0.5,0);
 audio_sound_gain(snd_portal,0,0);
+audio_sound_gain(snd_bubbles,0,0);
 
 ///display properties
 idealWidth = 0;
