@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hovering = collision_point(mouse_x,mouse_y,id,false,false) == id;
+            <string>hovering = place_meeting(x,y,obj_cursor);
 
 image_index = active*2 + hovering;
 
@@ -38,6 +38,18 @@ if hovering &amp;&amp; mouse_check_button_pressed(mb_left) {
         break;
         case 1:
             mute = active;
+            audio_sound_gain(snd_mainTheme,0.5 * !mute,0);
+        break;
+        case 2:
+            cursor = active;
+            if cursor {
+                obj_cursor.visible = true;
+                window_set_cursor(cr_none);
+            }
+            else {
+                obj_cursor.visible = false;
+                window_set_cursor(cr_default);
+            }
         break;
     }
 }

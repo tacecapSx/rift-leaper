@@ -42,6 +42,8 @@ if obj_player.hadFocus {
 }
 
 if clicked &amp;&amp; obj_player.canShoot {
+    if !mute audio_play_sound(snd_shoot,0,false);
+
     bullet = instance_create(x + lengthdir_x(12, image_angle), y + lengthdir_y(12, image_angle), obj_bullet);
     bullet.image_angle = image_angle;
     bullet.direction = image_angle;

@@ -49,7 +49,7 @@ holding = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hovering = collision_point(mouse_x,mouse_y,id,false,false) == id;
+            <string>hovering = place_meeting(x,y,obj_cursor);
 
 image_index = hovering + (holding &amp;&amp; hovering);
 

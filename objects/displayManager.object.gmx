@@ -31,6 +31,9 @@ showTimer = false;
 globalvar mute;
 mute = false;
 
+globalvar cursor;
+cursor = true;
+
 globalvar timer;
 timer = 0;
 
@@ -38,7 +41,10 @@ globalvar timeScale;
 timeScale = 1;
 
 globalvar web;
-web = true;
+web = false;
+
+globalvar shift;
+shift = ternary(web, vk_shift, vk_lshift);
 
 globalvar font;
 font = font_add_sprite(spr_font,ord(' '),true,1)
@@ -47,6 +53,13 @@ smallFont = font_add_sprite(spr_smallFont,ord(' '),true,1)
 
 draw_set_font(font);
 draw_set_color(c_white);
+
+window_set_cursor(cr_none);
+
+bgm = audio_play_sound(snd_mainTheme,0,true);
+portal = audio_play_sound(snd_portal,0,true);
+audio_sound_gain(snd_mainTheme,0.5,0);
+audio_sound_gain(snd_portal,0,0);
 
 ///display properties
 idealWidth = 0;
@@ -150,6 +163,31 @@ alarm[0] = 1
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if keyboard_check(shift) &amp;&amp; keyboard_check_pressed(ord('R')) {
+    room_goto(rm_mainMenu);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -167,12 +205,7 @@ alarm[0] = 1
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if keyboard_check(vk_shift) &amp;&amp; keyboard_check_pressed(ord('R')) {
-    room_goto(rm_mainMenu);
-}
-
-
-if !web
+            <string>if !web
 {
     if(keyboard_check_pressed(ord('Z')) &amp;&amp; !window_get_fullscreen())
     {

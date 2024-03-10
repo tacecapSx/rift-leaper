@@ -4,7 +4,15 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\snd_mainTheme</sound>
+    <sound>sound\snd_portal</sound>
+    <sound>sound\snd_exit</sound>
+    <sound>sound\snd_shoot</sound>
+    <sound>sound\snd_explosion</sound>
+    <sound>sound\snd_jump</sound>
+    <sound>sound\snd_swap</sound>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_player</sprite>
     <sprite>sprites\spr_player_walk</sprite>
@@ -64,38 +72,44 @@
   <objects name="objects">
     <object>objects\obj_player</object>
     <object>objects\obj_gun</object>
-    <object>objects\par_platform</object>
-    <object>objects\obj_normalPlatform</object>
-    <object>objects\obj_bouncePlatform</object>
-    <object>objects\obj_boostPlatform</object>
-    <object>objects\obj_crumblingPlatform</object>
-    <object>objects\obj_killPlatform</object>
     <object>objects\displayManager</object>
     <object>objects\obj_cursor</object>
     <object>objects\obj_bullet</object>
     <object>objects\obj_explosion</object>
     <object>objects\obj_portal</object>
-    <object>objects\obj_track1</object>
-    <object>objects\obj_track2</object>
-    <object>objects\obj_track4</object>
-    <object>objects\part_fire</object>
-    <object>objects\part_water</object>
-    <object>objects\part_dust</object>
-    <object>objects\part_exit</object>
     <object>objects\obj_tutorialText</object>
     <object>objects\obj_dirtBackground</object>
     <object>objects\obj_dirtBall</object>
     <object>objects\obj_collPoint</object>
     <object>objects\obj_exit</object>
-    <object>objects\obj_deathPlane</object>
-    <object>objects\obj_afterImage</object>
     <object>objects\obj_controls</object>
-    <object>objects\obj_portalFlash</object>
     <object>objects\obj_end</object>
-    <object>objects\obj_title</object>
-    <object>objects\obj_titlePortal</object>
-    <object>objects\obj_checkBox</object>
-    <object>objects\obj_play</object>
+    <objects name="Platforms">
+      <object>objects\par_platform</object>
+      <object>objects\obj_bouncePlatform</object>
+      <object>objects\obj_killPlatform</object>
+      <object>objects\obj_crumblingPlatform</object>
+      <object>objects\obj_boostPlatform</object>
+      <object>objects\obj_normalPlatform</object>
+      <object>objects\obj_deathPlane</object>
+      <object>objects\obj_track1</object>
+      <object>objects\obj_track2</object>
+      <object>objects\obj_track4</object>
+    </objects>
+    <objects name="Main Menu">
+      <object>objects\obj_checkBox</object>
+      <object>objects\obj_title</object>
+      <object>objects\obj_titlePortal</object>
+      <object>objects\obj_play</object>
+    </objects>
+    <objects name="Particles">
+      <object>objects\part_water</object>
+      <object>objects\part_dust</object>
+      <object>objects\part_fire</object>
+      <object>objects\part_exit</object>
+      <object>objects\obj_portalFlash</object>
+      <object>objects\obj_afterImage</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_init</room>
