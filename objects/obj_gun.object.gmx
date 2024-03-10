@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hspeed = 0;
+            <string>visible = !obj_player.boosting;
+
+hspeed = 0;
 vspeed = 0;
 
 x = obj_player.x;
@@ -42,7 +44,7 @@ if obj_player.hadFocus {
 }
 
 if clicked &amp;&amp; obj_player.canShoot {
-    if !mute audio_play_sound(snd_shoot,0,false);
+    play_sound(snd_shoot);
 
     bullet = instance_create(x + lengthdir_x(12, image_angle), y + lengthdir_y(12, image_angle), obj_bullet);
     bullet.image_angle = image_angle;

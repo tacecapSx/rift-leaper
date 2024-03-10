@@ -51,10 +51,10 @@
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
   </views>
   <instances>
-    <instance objName="obj_normalPlatform" x="516" y="624" name="inst_DCC3F7E0" locked="0" code="" scaleX="12" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_normalPlatform" x="516" y="624" name="inst_DCC3F7E0" locked="0" code="" scaleX="2" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_player" x="516" y="600" name="inst_8CDD2573" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_exit" x="516" y="-876" name="inst_E8B29230" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_deathPlane" x="528" y="684" name="inst_33499C9C" locked="0" code="" scaleX="1000" scaleY="6" colour="4294967295" rotation="0"/>
+    <instance objName="obj_deathPlane" x="528" y="804" name="inst_33499C9C" locked="0" code="" scaleX="1000" scaleY="6" colour="4294967295" rotation="0"/>
     <instance objName="obj_normalPlatform" x="576" y="384" name="inst_9AE68C82" locked="0" code="" scaleX="2" scaleY="20" colour="4294967295" rotation="0"/>
     <instance objName="obj_normalPlatform" x="456" y="-336" name="inst_734DF71F" locked="0" code="" scaleX="2" scaleY="20" colour="4294967295" rotation="0"/>
     <instance objName="obj_normalPlatform" x="576" y="-576" name="inst_A444D57B" locked="0" code="" scaleX="2" scaleY="20" colour="4294967295" rotation="0"/>
@@ -97,6 +97,16 @@
     <instance objName="obj_normalPlatform" x="456" y="144" name="inst_66A30493" locked="0" code="" scaleX="2" scaleY="20" colour="4294967295" rotation="0"/>
     <instance objName="obj_bouncePlatform" x="456" y="-96" name="inst_9E28B656" locked="0" code="" scaleX="2" scaleY="20" colour="4294967295" rotation="0"/>
     <instance objName="obj_normalPlatform" x="576" y="-96" name="inst_239B9304" locked="0" code="" scaleX="2" scaleY="20" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bouncePlatform" x="708" y="624" name="inst_13A86AB1" locked="0" code="" scaleX="8" scaleY="2" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bouncePlatform" x="324" y="372" name="inst_C20348B6" locked="0" code="" scaleX="8" scaleY="2" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bouncePlatform" x="708" y="132" name="inst_6B42741E" locked="0" code="" scaleX="8" scaleY="2" colour="4294967295" rotation="0"/>
+    <instance objName="obj_normalPlatform" x="324" y="624" name="inst_EAD303D1" locked="0" code="" scaleX="8" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bouncePlatform" x="324" y="-108" name="inst_373392B5" locked="0" code="" scaleX="8" scaleY="2" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bouncePlatform" x="708" y="-348" name="inst_C9240AA1" locked="0" code="" scaleX="8" scaleY="2" colour="4294967295" rotation="0"/>
+    <instance objName="obj_normalPlatform" x="708" y="372" name="inst_BE84D955" locked="0" code="" scaleX="8" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_normalPlatform" x="324" y="132" name="inst_72B607C5" locked="0" code="" scaleX="8" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_normalPlatform" x="708" y="-108" name="inst_2220DB7E" locked="0" code="" scaleX="8" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_normalPlatform" x="324" y="-348" name="inst_8D43FF9C" locked="0" code="" scaleX="8" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tile_dirt_big" x="480" y="480" w="24" h="24" xo="27" yo="1" id="10004860" name="inst_89F21940" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

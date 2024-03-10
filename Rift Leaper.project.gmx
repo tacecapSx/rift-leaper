@@ -51,6 +51,7 @@
     <sprite>sprites\spr_controls</sprite>
     <sprite>sprites\spr_portalFlash</sprite>
     <sprite>sprites\spr_boostFlash</sprite>
+    <sprite>sprites\spr_boost</sprite>
     <sprite>sprites\spr_logo</sprite>
     <sprite>sprites\spr_checkBox</sprite>
     <sprite>sprites\spr_play</sprite>
@@ -72,6 +73,9 @@
     <script>scripts\add_zeroes.gml</script>
     <script>scripts\add_zeroes_back.gml</script>
     <script>scripts\draw_text_shadow.gml</script>
+    <script>scripts\create_afterimage.gml</script>
+    <script>scripts\play_sound.gml</script>
+    <script>scripts\draw_tiled_platform.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\obj_player</object>

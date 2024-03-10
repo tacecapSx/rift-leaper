@@ -41,7 +41,7 @@ globalvar timeScale;
 timeScale = 1;
 
 globalvar web;
-web = false;
+web = true;
 
 globalvar shift;
 shift = ternary(web, vk_shift, vk_lshift);
@@ -183,6 +183,8 @@ alarm[0] = 1
           <argument>
             <kind>1</kind>
             <string>if keyboard_check(shift) &amp;&amp; keyboard_check_pressed(ord('R')) {
+    audio_sound_gain(snd_portal,0,0);
+    audio_sound_gain(snd_bubbles,0,0);
     room_goto(rm_mainMenu);
 }
 </string>

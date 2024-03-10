@@ -65,43 +65,6 @@ boosting = false;
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="2">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///camera
-
-if screenShake &gt; 0 screenShake -= 0.05 else screenShake = 0;
-
-var xTo = x + hspeed*30 - view_wview/2;
-var yTo = y + vspeed*30 - view_hview/2;
-
-view_xview -= ((view_xview - xTo) / 20) * timeScale;
-view_yview -= ((view_yview - yTo) / 20) * timeScale;
-
-view_xview += random_range(-screenShake,screenShake);
-view_yview += random_range(-screenShake,screenShake);
-
-//view_xview = round(view_xview*100)/100;
-//view_yview = round(view_yview*100)/100;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -121,31 +84,37 @@ view_yview += random_range(-screenShake,screenShake);
             <kind>1</kind>
             <string>///logic
 
-if timeScale != 0 instance_create(random_range(bbox_left,bbox_right),random_range(bbox_top,bbox_bottom),part_fire);
+if(timeScale != 0) {
+    instance_create(random_range(bbox_left,bbox_right),random_range(bbox_top,bbox_bottom),part_fire);
+}
 
-if keyboard_check_pressed(ord('R')) room_restart();
-if keyboard_check_pressed(ord('N')) &amp;&amp; keyboard_check(shift) room_goto(room_next(room));
-if keyboard_check_pressed(ord('P')) &amp;&amp; keyboard_check(shift) room_goto(room_previous(room));
+if keyboard_check_pressed(ord('R')) {
+    if(room == rm_level1) { //the run hasn't really started yet.
+        timer = 0;
+    }
+    
+    room_restart();
+}
 
 h = keyboard_check(ord('D')) - keyboard_check(ord('A'));
 
-if grounded {
+if(grounded) {
     if h != 0 image_xscale = h;
 }
 else image_xscale = gun.image_yscale;
 
-if h == 0 &amp;&amp; grounded {
+if(h == 0 &amp;&amp; grounded) {
     _hspeed /= 1.25;
 }
-else if (abs(_hspeed) &lt; 2.5 || abs(_hspeed + h * 0.33) &lt; abs(_hspeed)) {
+else if(abs(_hspeed) &lt; 2.5 || abs(_hspeed + h * 0.33) &lt; abs(_hspeed)) {
     _hspeed += h * 0.33;
 }
 
 var grav = 0.275;
 
-_vspeed = clamp(_vspeed + grav * timeScale, -1000, 6)
+_vspeed = clamp(_vspeed + grav * timeScale, -1000, 6);
 
-if !obj_portal.swapping &amp;&amp; !boosting {
+if(!obj_portal.swapping &amp;&amp; !boosting) {
     //slowmo
     slowmo = keyboard_check(shift);
     
@@ -156,36 +125,29 @@ if !obj_portal.swapping &amp;&amp; !boosting {
             if obj_portal.warning {
                 timeScale = ternary(obj_portal.dimensionTimer &lt; 100,
                     clamp(obj_portal.dimensionTimer / obj_portal.warningThreshold,0.25,1),
-                    clamp((obj_portal.dimensionTimerMax - obj_portal.dimensionTimer) / obj_portal.warningThreshold,0.25,1));
+                    clamp((obj_portal.dimensionTimerMax - obj_portal.dimensionTimer) / obj_portal.warningThreshold,0.25,1)
+                );
             }
             else {
                 timeScale = 0.25;
             }
         }
         
-        if counter mod 4 == 0 {
-            var _a = instance_create(x,y,obj_afterImage);
-            _a.sprite_index = sprite_index;
-            _a.image_index = image_index;
-            _a.image_xscale = image_xscale;
-            _a.image_yscale = image_yscale;
-            _a.image_angle = image_angle;
-            _a = instance_create(x,y,obj_afterImage);
-            _a.sprite_index = gun.sprite_index;
-            _a.image_index = gun.image_index;
-            _a.image_xscale = gun.image_xscale;
-            _a.image_yscale = gun.image_yscale;
-            _a.image_angle = gun.image_angle;
+        if(counter mod 4 == 0) {
+            create_afterimage(id);
+            create_afterimage(gun);
         }
     }
-    else timeScale = 1;
+    else {
+        timeScale = 1;
+    }
     
-    //horizontal
-    if leftPoint.colliding &amp;&amp; leftPoint.colliding.object_index != obj_boostPlatform &amp;&amp; leftPoint.colliding.object_index != obj_bouncePlatform {
+    //horizontal collision
+    if(leftPoint.colliding &amp;&amp; leftPoint.colliding.isSolid) {
         _hspeed = 0;
     }
     
-    if rightPoint.colliding &amp;&amp; rightPoint.colliding.object_index != obj_boostPlatform &amp;&amp; rightPoint.colliding.object_index != obj_bouncePlatform {
+    if(rightPoint.colliding &amp;&amp; rightPoint.colliding.isSolid) {
         _hspeed = 0;
     }    
 
@@ -193,51 +155,63 @@ if !obj_portal.swapping &amp;&amp; !boosting {
     platform = instance_place(x, y + _vspeed, par_platform);
     
     //head check
-    if platform {
-        if platform.y &lt; y {
-            if platform.object_index != obj_boostPlatform &amp;&amp; platform.object_index != obj_bouncePlatform _vspeed = 0.5;
-            platform = noone;
-        }
+    if(platform &amp;&amp; platform.y &lt; y &amp;&amp; platform.isSolid) {
+        _vspeed = 0.5;
+        
+        platform = noone;
     }
     
     var prev = grounded;
-    grounded = (platform != noone &amp;&amp; platform.object_index != obj_boostPlatform &amp;&amp; platform.object_index != obj_bouncePlatform);
+    grounded = (platform != noone &amp;&amp; platform.isSolid);
     if grounded != prev jumps--;
     
-    if grounded {
+    if(grounded) {
         platform.active = true;
         jumps = maxJumps;
         canShoot = true;
         
-        if grounded != prev y = platform.y - 4.5;
+        if(grounded != prev) { //snap to top of platform
+            y = platform.y - 4.5;
+        }
         
         vspeed = platform._vspeed;
         _vspeed = platform._vspeed / timeScale;
     }
     
-    if keyboard_check_pressed(vk_space) &amp;&amp; jumps &gt; 0 &amp;&amp; (jumps == maxJumps || _vspeed &gt; -6) {
-        if !mute audio_play_sound(snd_jump,0,false);
+    if(keyboard_check_pressed(vk_space) &amp;&amp; jumps &gt; 0 &amp;&amp; (jumps == maxJumps || _vspeed &gt; -6)) {
+        play_sound(snd_jump);
         
-        if (!grounded &amp;&amp; airTime &gt; 10) jumps--;
+        if(!grounded &amp;&amp; airTime &gt; 10) {
+            jumps--;
+        }
         
         _vspeed = -6;
     }
 }
-else{
-    hspeed=0;vspeed=0;
+else {
+    hspeed=0;
+    vspeed=0;
 }
 
-if !grounded airTime++ else airTime = 0;
+if(!grounded) {
+    airTime++;
+}
+else {
+    airTime = 0;
+}
 
-if timeScale == 0 &amp;&amp; _vspeed &gt; 2 _vspeed = 0;
+if(timeScale == 0 &amp;&amp; _vspeed &gt; 2) {
+    _vspeed = 0;
+}
 
-if point_distance(x,y,obj_exit.x,obj_exit.y) &lt; 10 {
+if(point_distance(x,y,obj_exit.x,obj_exit.y) &lt; 10) {
     x = obj_exit.x;
     y = obj_exit.y;
-    hspeed=0;vspeed=0;
+    hspeed=0;
+    vspeed=0;
     
     if levelEndTimer == 0 {
-        if !mute audio_play_sound(snd_exit,0,false);
+        play_sound(snd_exit);
     
         var _i = instance_create(x,y,obj_portalFlash);
         _i.image_angle = exitDirection;
@@ -261,7 +235,7 @@ if point_distance(x,y,obj_exit.x,obj_exit.y) &lt; 10 {
     
     visible = false;
     
-    if levelEndTimer &gt; 60 {
+    if(levelEndTimer &gt; 60) {
         room_goto(room_next(room));
     }
 }
@@ -273,28 +247,49 @@ else {
     
     var hgrav = lengthdir_x(_l,_d);
     var vgrav = lengthdir_y(_l,_d);
-    if hgrav != 0 {_hspeed = ternary(abs(hgrav) &lt; 0.5, sign(hgrav)/2, hgrav); ending = true;}
-    if vgrav != 0 {_vspeed = ternary(abs(vgrav) &lt; 0.5, sign(vgrav)/2, vgrav); ending = true;}
     
-    if abs(hgrav)+abs(vgrav) &gt; 0 {
-        timeScale = (abs(hgrav)+abs(vgrav))/2 + 0.5;
+    if(hgrav != 0) {
+        _hspeed = ternary(abs(hgrav) &lt; 0.5, sign(hgrav)/2, hgrav);
     }
-    else timer++;
+    
+    if(vgrav != 0) {
+        _vspeed = ternary(abs(vgrav) &lt; 0.5, sign(vgrav)/2, vgrav);
+    }
+    
+    if(abs(hgrav) + abs(vgrav) &gt; 0) {
+        timeScale = (abs(hgrav)+abs(vgrav))/2 + 0.5;
+        ending = true;
+    }
+    else {
+        timer++;
+    }
     
     hspeed = _hspeed * timeScale;
-    if grounded &amp;&amp; !obj_portal.swapping hspeed += platform._hspeed;
-    if !grounded vspeed = _vspeed * timeScale;
+    
+    if(grounded &amp;&amp; !obj_portal.swapping) {
+        hspeed += platform._hspeed;
+    }
+    
+    if(!grounded) {
+        vspeed = _vspeed * timeScale;
+    }
 }
 
-if deathTimer &gt; 0 || place_meeting(x,y,obj_deathPlane) {
+if(deathTimer &gt; 0 || place_meeting(x,y,obj_deathPlane)) {
     deathTimer++;
     
-    if deathTimer &gt; 30 {
+    if(deathTimer &gt; 30) {
+        if(room == rm_level1) { //the run hasn't really started yet.
+            timer = 0;
+        }
+        
         room_restart();
     }
 }
 
-if spawnTimer &gt; 0 spawnTimer--;
+if(spawnTimer &gt; 0) {
+    spawnTimer--;
+}
 </string>
           </argument>
         </arguments>
@@ -338,6 +333,38 @@ else {
         image_speed = 0.18;
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///camera
+
+if screenShake &gt; 0 screenShake -= 0.05 else screenShake = 0;
+
+var xTo = x + hspeed*30 - view_wview/2;
+var yTo = y + vspeed*30 - view_hview/2;
+
+view_xview -= ((view_xview - xTo) / 20) * timeScale;
+view_yview -= ((view_yview - yTo) / 20) * timeScale;
+
+view_xview += random_range(-screenShake,screenShake);
+view_yview += random_range(-screenShake,screenShake);
 </string>
           </argument>
         </arguments>
@@ -396,7 +423,15 @@ if !focus {
 draw_sprite_ext(spr_glow,0,x,y,1,1,0,-1,0.075);
 draw_set_blend_mode(bm_normal);
 
-draw_self();
+if !boosting {
+    draw_self();
+}
+else {
+    var ang = point_direction(0,0,hspeed,vspeed);
+
+    draw_sprite_ext(spr_boost,0,x,y,1,0.5,ang + 180, -1,1);
+    draw_sprite_ext(spr_boost,0,x,y,0.25,0.5,ang, -1,1);
+}
 
 if slowmo {
     draw_sprite_ext(spr_exitArrow,image_index mod 2,x + lengthdir_x(60,exitDirection), y + lengthdir_y(60,exitDirection), 1, 1, exitDirection,-1,0.5);

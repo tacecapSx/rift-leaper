@@ -28,6 +28,8 @@
             <string>bounceTimer = -1;
 
 event_inherited();
+
+isSolid = false;
 </string>
           </argument>
         </arguments>
@@ -57,25 +59,21 @@ bounceTimer--;
 if !obj_portal.swapping &amp;&amp; place_meeting(x-obj_player.hspeed,y-obj_player.vspeed,obj_player) {
     if obj_player.x &gt; bbox_right &amp;&amp; sign(obj_player._hspeed) == -1 {
         obj_player._hspeed = max(-obj_player._hspeed, 5 + _hspeed);
-        obj_player.jumps = obj_player.maxJumps - 1;
     }
     else if obj_player.x &lt; bbox_left &amp;&amp; sign(obj_player._hspeed) == 1 {
         obj_player._hspeed = min(-obj_player._hspeed, -5 + _hspeed);
-        obj_player.jumps = obj_player.maxJumps - 1;
     }
     else if y + image_yscale * 6 &gt; obj_player.y &amp;&amp; sign(obj_player._vspeed) == 1 {
         obj_player._vspeed = min(-obj_player._vspeed, -10 + _vspeed);
-        obj_player.jumps = obj_player.maxJumps;
     }
     else {
         obj_player._vspeed = max(-obj_player._vspeed, 6 + _vspeed);
-        obj_player.jumps = obj_player.maxJumps - 1;
     }
     
-    if !mute &amp;&amp; !audio_is_playing(snd_bounce) audio_play_sound(snd_bounce,0,false);
+    if !audio_is_playing(snd_bounce) play_sound(snd_bounce);
     
+    obj_player.jumps = obj_player.maxJumps - 1;
     obj_player.canShoot = true;
-    active = false;
     bounceTimer = 15;
 }
 </string>
@@ -100,9 +98,9 @@ if !obj_portal.swapping &amp;&amp; place_meeting(x-obj_player.hspeed,y-obj_playe
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite_ext(sprite_index, bounceTimer &lt; 0, x, y - 1, image_xscale + 1/6, image_yscale + 1/6, image_angle, image_blend, image_alpha);
+            <string>var bt = clamp01(bounceTimer);
 
-draw_sprite_ext(sprite_index, bounceTimer &gt;= 0, x, y, image_xscale, image_yscale, image_angle, image_blend, image_alpha);
+draw_tiled_platform(sprite_index, bounceTimer &gt; 0, x, y - bt * 6, image_xscale + bt, image_yscale + bt, 0, -1, 1);
 </string>
           </argument>
         </arguments>

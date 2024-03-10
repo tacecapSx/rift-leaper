@@ -43,11 +43,9 @@ if hovering &amp;&amp; mouse_check_button_pressed(mb_left) {
         case 2:
             cursor = active;
             if cursor {
-                obj_cursor.visible = true;
                 window_set_cursor(cr_none);
             }
             else {
-                obj_cursor.visible = false;
                 window_set_cursor(cr_default);
             }
         break;

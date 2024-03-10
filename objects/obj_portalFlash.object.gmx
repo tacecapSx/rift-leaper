@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>image_xscale = 6;
+mult = 1;
 </string>
           </argument>
         </arguments>
@@ -48,9 +49,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_xscale -= 1 * timeScale;
-image_yscale = image_xscale*0.33;
-image_alpha -= 0.1 * timeScale;
+            <string>image_xscale -= 1 * timeScale * mult;
+image_yscale = image_xscale * 0.33;
+image_alpha -= 0.1 * timeScale * mult;
 
 if sprite_index == spr_portalFlash {
     x = obj_exit.x;

@@ -32,6 +32,7 @@ trackProgress = 0;
 trackDirection = true;
 _hspeed = 0;
 _vspeed = 0;
+isSolid = true;
 </string>
           </argument>
         </arguments>

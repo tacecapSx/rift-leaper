@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>view_xview = -4;
+            <string>audio_sound_gain(snd_portal,0,0);
+audio_sound_gain(snd_bubbles,0,0);
+
+view_xview = -4;
 view_yview = -3;
 </string>
           </argument>

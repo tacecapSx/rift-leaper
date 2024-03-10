@@ -93,7 +93,7 @@ if crumbleTimer &gt;= 90 vspeed = _vspeed * timeScale;
 
 var _i = clamp(floor(crumbleTimer / 30),0,2);
 if image_index &lt; _i{
-    if !mute audio_play_sound(snd_crumble,0,false);
+    play_sound(snd_crumble);
 
     repeat(6*image_xscale*_i) {
         instance_create(random_range(bbox_left,bbox_right),random_range(bbox_top,bbox_bottom),part_dust);
@@ -101,11 +101,7 @@ if image_index &lt; _i{
 }
 image_index = _i;
 
-for(var i = 0; i &lt; image_xscale; i++) {
-    var xs = 1 + (image_xscale mod 1) / floor(image_xscale);
-
-    draw_sprite_ext(sprite_index, image_index, x + 6*xs - lengthdir_x((image_xscale/2) * 12, image_angle) + lengthdir_x(i * 12, image_angle), y - lengthdir_y((image_xscale/2) * 12,image_angle) + lengthdir_y(i * 12, image_angle), xs, 1, 0, image_blend, image_alpha);
-}
+draw_tiled_platform(sprite_index, image_index, x, y, image_xscale, image_yscale, 0, -1, 1);
 </string>
           </argument>
         </arguments>

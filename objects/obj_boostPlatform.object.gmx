@@ -33,6 +33,8 @@ startHspeed = 0;
 startVspeed = 0;
 
 event_inherited();
+
+isSolid = false;
 </string>
           </argument>
         </arguments>
@@ -91,8 +93,9 @@ if boostDirection != -1 {
         var _f = instance_create(obj_player.x,obj_player.y,obj_portalFlash);
         _f.sprite_index = spr_boostFlash;
         _f.image_angle = boostDirection * 90;
-        _f.image_xscale = 3;
-        _f.image_alpha = 0.5;
+        _f.image_xscale = 4;
+        _f.image_alpha = 0.4;
+        _f.mult = 0.1;
         
         obj_player.boosting = false;
         obj_player.canShoot = true;
@@ -125,7 +128,7 @@ else if !obj_portal.swapping &amp;&amp; place_meeting(x-obj_player.hspeed,y-obj_
         startHspeed = obj_player._hspeed;
         startVspeed = obj_player._vspeed;
         
-        if !mute &amp;&amp; !audio_is_playing(snd_boost) audio_play_sound(snd_boost,0,false);
+        if !audio_is_playing(snd_boost) play_sound(snd_boost);
     }
 }
 </string>

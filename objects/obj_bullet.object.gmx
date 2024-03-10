@@ -31,7 +31,7 @@ _vspeed += 0.1 * timeScale;
 image_angle = point_direction(0,0,_hspeed,_vspeed);
 
 if !obj_portal.swapping &amp;&amp; place_meeting(x,y,par_platform) {
-    if !mute audio_play_sound(snd_explosion,0,false);
+    play_sound(snd_explosion);
 
     instance_create(x,y,obj_explosion);
     instance_destroy();
