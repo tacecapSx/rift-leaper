@@ -31,6 +31,7 @@ warningThreshold = 30;
 swapTimerMax = seconds(0.8);
 swapTimer = 0;
 swapping = false;
+wasSwapping = false;
 start = (room != rm_level1);
 warning = false;
 
@@ -58,7 +59,9 @@ audio_sound_gain(snd_bubbles, 0, 0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var xTo = view_xview + view_wview/2;
+            <string>wasSwapping = swapping;
+
+var xTo = view_xview + view_wview/2;
 var yTo = view_yview + view_hview/2;
 
 if dimensionTimer &gt; dimensionTimerMax - 60 {

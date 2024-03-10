@@ -57,7 +57,7 @@ isSolid = true;
             <kind>1</kind>
             <string>active = false;
 
-if track != noone {
+if track != noone &amp;&amp; !obj_portal.swapping &amp;&amp; !obj_portal.wasSwapping {
     trackProgress += trackSpeed * sign(trackDirection - 0.5) * timeScale;
     
     if trackProgress &gt; track.length trackDirection = false;
@@ -86,10 +86,8 @@ if track != noone {
         break;
     }
     
-    if !obj_portal.swapping {
-        _hspeed = x - xprevious;
-        _vspeed = y - yprevious;
-    }
+    _hspeed = x - xprevious;
+    _vspeed = y - yprevious;
 }
 </string>
           </argument>
