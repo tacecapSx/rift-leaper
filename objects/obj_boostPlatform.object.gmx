@@ -90,7 +90,7 @@ if boostDirection != -1 {
     obj_player.grounded = false;
     
     if !place_meeting(x-obj_player.hspeed,y-obj_player.vspeed,obj_player) {
-        var _f = instance_create(obj_player.x,obj_player.y,obj_portalFlash);
+        var _f = instance_create(obj_player.x - obj_player.hspeed,obj_player.y - obj_player.vspeed,obj_portalFlash);
         _f.sprite_index = spr_boostFlash;
         _f.image_angle = boostDirection * 90;
         _f.image_xscale = 4;
