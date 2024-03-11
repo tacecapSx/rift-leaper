@@ -194,7 +194,7 @@ else {
 }
 
 if(!grounded) {
-    airTime++;
+    airTime += timeScale;
 }
 else {
     airTime = 0;
